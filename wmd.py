@@ -10,12 +10,12 @@ from sklearn.cross_validation import train_test_split
 from gensim.models.word2vec import Word2Vec
 from sklearn.metrics import euclidean_distances
 
-wv = Word2Vec.load_word2vec_format("../GoogleNews-vectors-negative300.bin.gz", binary = True)
+wv = Word2Vec.load_word2vec_format("/home/tong/Documents/python/GoogleNews-vectors-negative300.bin.gz", binary = True) 
 
 d1 = "Obama speaks to the media in Illinois"
 d2 = "The President addresses the press in Chicago"
 # d = ["Obama speaks to the media in Illinois", "The President addresses the press in Chicago", 
-# "It is holiday, enjoy my vacation in Chicago", "tomorrow is a holiday, i will take a rest", "I want to have a rest"]
+#"It is holiday, enjoy my vacation in Chicago", "tomorrow is a holiday, i will take a rest", "I want to have a rest"]
 
 vect = CountVectorizer(stop_words="english").fit([d1, d2])
 # vect = CountVectorizer(stop_words="english").fit(d)
@@ -27,10 +27,10 @@ voc_vec = {i:wv[i] for i in voc}
 
 from scipy.spatial.distance import cosine
 v_1, v_2 = vect.transform([d1, d2])
-# v = vect.transform(d)
-# vv = np.zeros((5,14))
-# for i in range(5):
-# 	vv[i] = v[i].toarray().ravel()
+#v = vect.transform(d)
+#vv = np.zeros((5,14))
+#for i in range(5):
+#    vv[i] = v[i].toarray().ravel()
 v_1 = v_1.toarray().ravel()
 v_2 = v_2.toarray().ravel()
 print(v_1, v_2)
